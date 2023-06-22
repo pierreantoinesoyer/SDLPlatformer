@@ -1,58 +1,52 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+//Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
+int main( int argc, char* args[] )
+{
+    //The window we'll be rendering to
+    SDL_Window* window = NULL;
 
-int initSDL() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return 0;
+    //The surface contained by the window
+    SDL_Surface* screenSurface = NULL;
+
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    {
+        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+    }
+    else
+    {
+        //Create window
+        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        if( window == NULL )
+        {
+            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Get window surface
+            screenSurface = SDL_GetWindowSurface( window );
+
+            //Fill the surface white
+            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+
+            //Update the surface
+            SDL_UpdateWindowSurface( window );
+
+            //Hack to get window to stay up
+            SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+        }
     }
 
-    window = SDL_CreateWindow("Platformer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-        SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    //Destroy window
+    SDL_DestroyWindow( window );
 
-    if (!window) {
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        return 0;
-    }
-
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        return 0;
-    }
-
-    return 1;
-}
-
-
-
-int SDL_main(int argc, char* argv[]) {
-    if (!initSDL()) {
-        return -1;
-    }
-
-
-
-    Uint32 lastFrameTime = SDL_GetTicks();
-
-    while (1) {
-        Uint32 currentFrameTime = SDL_GetTicks();
-        float deltaTime = (currentFrameTime - lastFrameTime) / 1000.0f;
-
-
-        lastFrameTime = currentFrameTime;
-
-        SDL_Delay(16);
-    }
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    //Quit SDL subsystems
     SDL_Quit();
 
     return 0;
