@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include "background.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1000;
@@ -32,8 +33,10 @@ int main( int argc, char* args[] )
             //Get window surface
             screenSurface = SDL_GetWindowSurface( window );
 
+            renderBackground(screenSurface); //rendu arrière plan
+
             //Fill the surface white
-            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+            //SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
 
             //Update the surface
             SDL_UpdateWindowSurface( window );
