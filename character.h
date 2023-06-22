@@ -9,6 +9,7 @@ typedef struct Character{
 }Character;
 
 
-Character *initCharacter(char* path, int x, int y);
+Character *initCharacter(int x, int y);
+void printCharacter(Character *perso);
 void DisplayCharacter(Character *Character,SDL_Surface* screenSurface);
 
