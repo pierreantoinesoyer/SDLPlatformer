@@ -147,10 +147,12 @@ void renderPlatform(SDL_Renderer* renderer, Platform* platform)
     while (platform!=NULL)
     {
         if((platform->posX > current_scroll + SCREEN_WIDTH) || (platform->posX + platform->sizeX < current_scroll)){
+            platform->isDisplayed = false;
             platform = platform->next;
             continue;
         }
 
+        platform->isDisplayed = true;
 
         SDL_Texture* platformTexture = SDL_CreateTextureFromSurface(renderer, platform->platformSurface);
         multi_rect[i].x = platform->posX;
