@@ -6,8 +6,8 @@
 #include "platform.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 1000;
-const int SCREEN_HEIGHT = 750;
+#define SCREEN_WIDTH 1000
+#define SCREEN_HEIGHT 750
 
 int main( int argc, char* args[] )
 {
