@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <stdbool.h>
 #include "background.h"
 #include "hud.h"
 #include "platform.h"
 #include "character.h"
-
+#include "game.h"
 
 //Screen dimension constants
 #define SCREEN_WIDTH 1000
@@ -48,7 +48,8 @@ int main( int argc, char* args[] )
         createPlatform(&platform);
 
         Character* character = createCharacter(renderer);
-
+        Game* game = malloc(sizeof(Game));
+        initGame(game, platform, character);
 
         SDL_RenderPresent(renderer);
 
@@ -72,6 +73,7 @@ int main( int argc, char* args[] )
             while( quit == false )
             {
 
+                characterGravity(game);
 
                 renderBackground(renderer, background);
                 renderPlatform(renderer, platform);

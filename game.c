@@ -1,11 +1,11 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include "character.h"
 #include "platform.h"
 
-const int GRAVITY = 20;
+const float GRAVITY = 0.5f;
 
 typedef struct Game{
     Character* character;
@@ -13,34 +13,44 @@ typedef struct Game{
     bool isJumping;
 }Game;
 
-void checkCollision(Platform* platform,Character* character)
+void initGame(Game* game, Platform* platform,Character* character)
 {
-    int diffY = character->y+character->sizeHeight+character->speedY-plateform->posY;
-    if(diffY<0 && diffY>-character->sizeHeight)
+    game->character = character;
+    game->platform = platform;
+    game->isJumping = true;
+}
+
+void checkCollision(Platform* platform,Character* character, Game* game)
+{
+    int diffY = character->y + character->sizeHeight + character->speedY - platform->posY;
+    if(diffY < character->sizeHeight/2 && diffY > 0)
     {
-        int diffLeft = character->x+ character->sizeWidth - platform->posX;
+        int diffLeft = character->x + character->sizeWidth - platform->posX;
         int diffRight = character->x - (platform->posX + platform->sizeX);
-        if(diffLeft>0||diffRight<0)
+        if(diffLeft>0 && diffRight<0)
         {
+            printf("platform detected : %d, %d", platform->posX, platform->sizeX);
             character->y=platform->posY-character->sizeHeight;
             character->speedY=0;
+            game->isJumping=false;
         }
     }
 
 }
 
-void charaterGravity(Game* game)
+void characterGravity(Game* game)
 {
     if(game->isJumping==true)
     {
-        game->character.speedY+=GRAVITY;
+        game->character->speedY+=GRAVITY;
+        printf("%f",game->character->speedY);
     }
-    Platform* current = Game->platform;
+    Platform* current = game->platform;
     while(current!=NULL)
     {
         if(current->isDisplayed)
         {
-            checkCollision(current,game->character);
+            checkCollision(current, game->character, game);
         }
         current = current->next;
     }

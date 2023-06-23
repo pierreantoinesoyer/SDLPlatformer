@@ -9,6 +9,8 @@ typedef struct Character{
     SDL_Rect rect;
     int sizeHeight ;
     int sizeWidth ;
+    float speedX;
+    float speedY;
 
 
 }Character;
