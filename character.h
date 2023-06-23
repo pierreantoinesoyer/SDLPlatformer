@@ -19,5 +19,6 @@ typedef struct Character{
 Character *createCharacter(SDL_Renderer * rend);
 void printCharacter(Character *perso);
 void renderCharacter(SDL_Renderer* renderer, Character* character);
+void controlCharacter(Character *ptrCharacter,SDL_Event *ptrEvent, bool *quit,int *speed);
 void DisplayCharacter(Character *Character,SDL_Surface* screenSurface);
 

@@ -17,7 +17,7 @@ int main( int argc, char* args[] )
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
 
-    Uint32 startTime = SDL_GetTicks(); //On récupère le temps de départ
+    Uint32 startTime = SDL_GetTicks(); //On rÃ©cupÃ¨re le temps de dÃ©part
 
 
     //The surface contained by the window
@@ -66,14 +66,19 @@ int main( int argc, char* args[] )
             SDL_UpdateWindowSurface(window);
 
             //Hack to get window to stay up
-            SDL_Event e;
             bool quit = false;
             Uint32 frameTime = SDL_GetTicks();
+            int speed = 60;
 
             while( quit == false )
             {
 
+                SDL_Event event;
+                controlCharacter(character,&event, &quit,&speed);
+
+
                 characterGravity(game);
+
 
                 renderBackground(renderer, background);
                 renderPlatform(renderer, platform);
@@ -84,7 +89,7 @@ int main( int argc, char* args[] )
 
 
                 Uint32 endFrame = SDL_GetTicks();
-                int32_t delay = (16 - (SDL_GetTicks() - frameTime)); //entier signé nécessaire
+                int32_t delay = (16 - (SDL_GetTicks() - frameTime)); //entier signÃ© nÃ©cessaire
 
                 if(delay<1)
                 {
@@ -94,11 +99,7 @@ int main( int argc, char* args[] )
                 SDL_Delay(delay);
                 frameTime = SDL_GetTicks();
 
-                while( SDL_PollEvent( &e ) )
-                {
-                    if( e.type == SDL_QUIT )
-                    quit = true;
-                }
+
             }
         }
     }

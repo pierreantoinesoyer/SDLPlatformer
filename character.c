@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+
+#include <stdbool.h>
 #include <SDL2/SDL.h>
+
 #include "character.h"
 
 Character *createCharacter(SDL_Renderer *rend){
@@ -48,6 +51,39 @@ void renderCharacter(SDL_Renderer* renderer, Character* character)
     }
     updateCharacterPosition(character);
     SDL_RenderCopy(renderer, character->texture, NULL, &character->rect);
+}
+
+void controlCharacter(Character *ptrCharacter,SDL_Event *ptrEvent, bool *quit,int *speed){
+    // Events management
+        while (SDL_PollEvent(ptrEvent)) {
+            switch (ptrEvent->type) {
+
+            case SDL_QUIT:
+                // handling of close button
+                *quit = 0;
+                break;
+
+            case SDL_KEYDOWN:
+                // keyboard API for key pressed
+                switch (ptrEvent->key.keysym.scancode) {
+                case SDL_SCANCODE_W:
+                case SDL_SCANCODE_SPACE:
+                    ptrCharacter->rect.y -= *speed;
+                    break;
+                case SDL_SCANCODE_A:
+                case SDL_SCANCODE_LEFT:
+                    ptrCharacter->rect.x -= *speed / 30;
+                    break;
+                case SDL_SCANCODE_D:
+                case SDL_SCANCODE_RIGHT:
+                    ptrCharacter->rect.x += *speed / 30;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+
 }
 
 
