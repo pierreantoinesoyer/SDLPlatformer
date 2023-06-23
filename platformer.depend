@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1687444028 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
+1687507473 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
 	<stdio.h>
 	<SDL2/SDL.h>
 	<stdbool.h>
 	"background.h"
 	"hud.h"
+	"platform.h"
 
 1687356358 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -399,26 +400,43 @@
 	"begin_code.h"
 	"close_code.h"
 
-1687443218 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\background.c
+1687506631 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\background.c
 	<stdio.h>
 	<SDL2/SDL.h>
 	"background.h"
 
-1687441540 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\background.h
+1687506631 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\background.h
 	<SDL2/SDL.h>
 
-1687443357 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\hud.c
+1687506632 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\hud.c
 	<stdio.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	"hud.h"
 
-1687428680 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\include\sdl2\sdl_ttf.h
+1687506632 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1687439507 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\hud.h
+1687506632 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\hud.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
+
+1687506632 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.c
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	"character.h"
+
+1687506632 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.h
+	<SDL2/SDL.h>
+
+1687506399 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.h
+
+1687507564 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.c
+	<SDL2/SDL.h>
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
 
