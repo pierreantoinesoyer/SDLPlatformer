@@ -16,9 +16,6 @@ int main(int argc, char* args[])
     //The window we'll be rendering to
     SDL_Window* window = NULL;
 
-    //The surface contained by the window
-    //SDL_Surface* screenSurface = NULL;
-
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -34,12 +31,6 @@ int main(int argc, char* args[])
         }
         else
         {
-//            //Get window surface
-//            //screenSurface = SDL_GetWindowSurface(window);
-
-            //Fill the surface white
-            ///SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
             //Update the surface
             SDL_UpdateWindowSurface(window);
 
@@ -59,23 +50,17 @@ int main(int argc, char* args[])
                 multi_rect[i].w = returnPlatform(plateform,i)->sizeX;
                 multi_rect[i].h = returnPlatform(plateform,i)->sizeY;
             }
-//            for(int i=0; i<5;i++)
-//            {
-//                multi_rect[i].x = rand() % 600;
-//                multi_rect[i].y = 100*i;
-//                multi_rect[i].w = 300;
-//                multi_rect[i].h = 30;
-//            }
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
             SDL_RenderFillRects(renderer, multi_rect, 5);
 
             SDL_RenderPresent(renderer);
 
+            //Destroy Plateform
+            destroyPlateform(plateform);
             //Hack to get window to stay up
             SDL_Event e; bool quit = false; while (quit == false) { while (SDL_PollEvent(&e)) { if (e.type == SDL_QUIT) quit = true; } }
         }
     }
-
 
     //Destroy window
     SDL_DestroyWindow(window);

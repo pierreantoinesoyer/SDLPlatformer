@@ -3,11 +3,15 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+//Creation de la structure plateform
 typedef struct Plateform{
+    //Position de la plateforme
     int posX;
     int posY;
+    //Taille de la plateforme
     int sizeX;
     int sizeY;
+    //Une plateforme pointe vers la plateforme suivante
     struct Plateform *next;
     bool isDisplayed;
 }Plateform;
@@ -31,16 +35,16 @@ void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY)
     {
         Plateform* current = *head;
         while (current->next != NULL) {
-            current->isDisplayed = false; // Met à jour le flag isLast de l'élément précédent
+            current->isDisplayed = false; // Met à jour le flag isDisplayed de l'élément précédent
             current = current->next;
         }
-        current->isDisplayed = false; // Met à jour le flag isLast de l'élément précédent du dernier élément existant
+        current->isDisplayed = false; // Met à jour le flag isDisplayed de l'élément précédent du dernier élément existant
         current->next = newPlateform; // Ajoute le nouvel élément à la fin de la liste
     }
 }
 
 
-//detruire la structure
+//detruire la plateform
 void destroyPlateform(Plateform* plateform)
 {
     if(plateform!= NULL)
@@ -49,7 +53,7 @@ void destroyPlateform(Plateform* plateform)
     }
 }
 
-
+//creation de 5 plateforme
 void createPlateform(Plateform** plateform)
 {
     int posX;
@@ -66,6 +70,7 @@ void createPlateform(Plateform** plateform)
     }
 }
 
+//Compte le nombre de plateforme
 int count(Plateform** plateform)
 {
     int i = 0;
@@ -82,6 +87,7 @@ int count(Plateform** plateform)
     }
 }
 
+//return la une plateforme en fontion d'un index
 Plateform* returnPlatform(Plateform* plateform,int index) {
     Plateform* current = plateform;
     int i = 0;
