@@ -1,0 +1,11 @@
+# exclude files object
+/obj/*
+#
+exclude plateformer file
+plateformer.*
+!platformer.cbp
+
+#exclude SDL library
+include/*
+lib/*
+
