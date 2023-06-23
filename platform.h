@@ -1,16 +1,16 @@
 #ifndef PLATEFORM
 #define PLATEFORM
-typedef struct Plateform{
+typedef struct Platform{
     int posX;
     int posY;
     int sizeX;
     int sizeY;
-    struct Plateform *next;
+    struct Platform *next;
     bool isDisplayed;
-}Plateform;
-void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY);
-void destroyPlateform(Plateform* plateform);
-void createPlateform(Plateform** plateform);
-Plateform* returnPlateform(Plateform* plateform,int index);
+}Platform;
+void insert(Platform** head, int posX, int posY, int sizeX, int sizeY);
+void destroyPlatform(Platform* platform);
+void createPlatform(Platform** platform);
+Platform* returnPlateform(Platform* platform,int index);
 
 #endif

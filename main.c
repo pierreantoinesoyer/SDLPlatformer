@@ -42,8 +42,8 @@ int main( int argc, char* args[] )
 
         Background* background = createBackground(renderer);
 
-        Plateform* platform = NULL;
-        createPlateform(&platform);
+        Platform* platform = NULL;
+        createPlatform(&platform);
 
         SDL_RenderPresent(renderer);
 

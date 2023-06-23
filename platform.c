@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 //Creation de la structure plateform
-typedef struct Plateform{
+typedef struct Platform{
     //Position de la plateforme
     int posX;
     int posY;
@@ -12,51 +12,51 @@ typedef struct Plateform{
     int sizeX;
     int sizeY;
     //Une plateforme pointe vers la plateforme suivante
-    struct Plateform *next;
+    struct Platform *next;
     bool isDisplayed;
-}Plateform;
+}Platform;
 
 //inserer une plateforme
-void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY)
+void insert(Platform** head, int posX, int posY, int sizeX, int sizeY)
 {
     // Allocation de memoire pour une nouvelle structure Plateform
-    Plateform* newPlateform = (Plateform*)malloc(sizeof(Plateform));
+    Platform* newPlatform = (Platform*)malloc(sizeof(Platform));
 
     // Creation de la nouvelle plateforme
-    newPlateform->posX = posX;
-    newPlateform->posY = posY;
-    newPlateform->sizeX = sizeX;
-    newPlateform->sizeY = sizeY;
-    newPlateform->next = NULL;
-    newPlateform->isDisplayed = false;
+    newPlatform->posX = posX;
+    newPlatform->posY = posY;
+    newPlatform->sizeX = sizeX;
+    newPlatform->sizeY = sizeY;
+    newPlatform->next = NULL;
+    newPlatform->isDisplayed = false;
 
     if (*head == NULL) {
-        *head = newPlateform; // Si la liste est vide, le nouvel élément devient la tête
+        *head = newPlatform; // Si la liste est vide, le nouvel élément devient la tête
     }
     else
     {
-        Plateform* current = *head;
+        Platform* current = *head;
         while (current->next != NULL) {
             current->isDisplayed = false; // Met à jour le flag isDisplayed de l'élément précédent
             current = current->next;
         }
         current->isDisplayed = false; // Met à jour le flag isDisplayed de la plateforme précédente de la dernière plateforme existante
-        current->next = newPlateform; // Ajoute la nouvelle plateforme à la fin de la liste
+        current->next = newPlatform; // Ajoute la nouvelle plateforme à la fin de la liste
     }
 }
 
 
 // Destruction de la plateform
-void destroyPlateform(Plateform* plateform)
+void destroyPlatform(Platform* platform)
 {
-    if(plateform!= NULL)
+    if(platform!= NULL)
     {
-        free(plateform);
+        free(platform);
     }
 }
 
 // Creation de 5 plateformes
-void createPlateform(Plateform** plateform)
+void createPlatform(Platform** platform)
 {
     //initatilisation
     int posX;
@@ -69,18 +69,18 @@ void createPlateform(Plateform** plateform)
         posY = 100*i;
         sizeX = 400;
         sizeY = 50;
-        insert(plateform,posX,posY,sizeX,sizeY);
+        insert(platform,posX,posY,sizeX,sizeY);
     }
 }
 
 //Compte le nombre de plateforme
-int count(Plateform** plateform)
+int count(Platform** platform)
 {
     int i = 0;
-    if (*plateform == NULL) {
+    if (*platform == NULL) {
         return i;
     } else {
-        Plateform* current = *plateform;
+        Platform* current = *platform;
         while(current->next != NULL)
         {
             i++;
@@ -91,8 +91,8 @@ int count(Plateform** plateform)
 }
 
 // Return une plateforme en fontion d'un index
-Plateform* returnPlateform(Plateform* plateform,int index) {
-    Plateform* current = plateform;
+Platform* returnPlatform(Platform* platform,int index) {
+    Platform* current = platform;
     int i = 0;
     while (current != NULL) {
         if(index == i)
@@ -105,16 +105,16 @@ Plateform* returnPlateform(Plateform* plateform,int index) {
     exit(0);
 }
 
-void renderPlatform(SDL_Renderer* renderer, Plateform* platform)
+void renderPlatform(SDL_Renderer* renderer, Platform* platform)
 {
     SDL_Rect multi_rect[5];
 
     for (int i = 0; i < 5; i++)
     {
-        multi_rect[i].x = returnPlateform(platform,i)->posX;
-        multi_rect[i].y = returnPlateform(platform,i)->posY;
-        multi_rect[i].w = returnPlateform(platform,i)->sizeX;
-        multi_rect[i].h = returnPlateform(platform,i)->sizeY;
+        multi_rect[i].x = returnPlatform(platform,i)->posX;
+        multi_rect[i].y = returnPlatform(platform,i)->posY;
+        multi_rect[i].w = returnPlatform(platform,i)->sizeX;
+        multi_rect[i].h = returnPlatform(platform,i)->sizeY;
     }
 
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
