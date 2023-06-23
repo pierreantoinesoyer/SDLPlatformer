@@ -47,6 +47,7 @@ void renderCharacter(SDL_Renderer* renderer, Character* character)
 {
     if (character == NULL)
     {
+        printf("character is NULL");
         exit(8);
     }
     updateCharacterPosition(character);
