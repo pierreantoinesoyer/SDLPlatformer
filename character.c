@@ -1,16 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
+
 #include <stdbool.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
+
 #include "character.h"
 
 Character *createCharacter(SDL_Renderer *rend){
     Character  *ptrCharacter = malloc(sizeof(Character));
     ptrCharacter->path = "./texture/character/still.bmp";
-    ptrCharacter->x = 1000;
-    ptrCharacter->y = 1000;
-    ptrCharacter->sizeWidth = 40;
-    ptrCharacter->sizeHeight = 40;
+    ptrCharacter->x = 100;
+    ptrCharacter->y = 100;
+    ptrCharacter->sizeWidth = 100;
+    ptrCharacter->sizeHeight = 100;
+    ptrCharacter->speedX = 0;
+    ptrCharacter->speedY = 0;
 
     SDL_Surface* characterSurface = NULL;
     characterSurface = SDL_LoadBMP("./texture/character/still.bmp");
@@ -27,9 +31,9 @@ Character *createCharacter(SDL_Renderer *rend){
     dest.w = ptrCharacter->sizeWidth;
     dest.h = ptrCharacter->sizeHeight;
     // sets initial x-position of object
-    dest.x = (ptrCharacter->x - dest.w) / 2;
+    dest.x = ptrCharacter->x;
     // sets initial y-position of object
-    dest.y = (ptrCharacter->y - dest.h) / 2;
+    dest.y = ptrCharacter->y;
     ptrCharacter->rect = dest;
 
 
@@ -45,6 +49,7 @@ void renderCharacter(SDL_Renderer* renderer, Character* character)
     {
         exit(8);
     }
+    updateCharacterPosition(character);
     SDL_RenderCopy(renderer, character->texture, NULL, &character->rect);
 }
 
@@ -97,5 +102,22 @@ void DisplayCharacter(Character *Character,SDL_Surface* screenSurface){
 
     // libération de la surface écran
     SDL_FreeSurface(characterSurface);
+
+}
+
+void updateCharacterPosition(Character* character)
+{
+    character->x = character->x + character->speedX;
+    character->y = character->y + character->speedY;
+
+    SDL_Rect dest;
+    SDL_QueryTexture(character->texture, NULL, NULL, &dest.w, &dest.h);
+    dest.w = character->sizeWidth;
+    dest.h = character->sizeHeight;
+    // sets initial x-position of object
+    dest.x = character->x;
+    // sets initial y-position of object
+    dest.y = character->y;
+    character->rect = dest;
 
 }

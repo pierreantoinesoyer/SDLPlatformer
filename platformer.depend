@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1687507473 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
+1687512238 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
 	<stdio.h>
 	<SDL2/SDL.h>
 	<stdbool.h>
@@ -432,9 +432,9 @@
 1687506632 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.h
 	<SDL2/SDL.h>
 
-1687506399 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.h
+1687509645 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.h
 
-1687507564 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.c
+1687512399 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.c
 	<SDL2/SDL.h>
 	<stdio.h>
 	<stdbool.h>

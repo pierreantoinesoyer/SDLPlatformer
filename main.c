@@ -1,15 +1,15 @@
 #include <stdio.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <stdbool.h>
 #include "background.h"
 #include "hud.h"
 #include "platform.h"
 #include "character.h"
-
+#include "game.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 1000;
-const int SCREEN_HEIGHT = 750;
+#define SCREEN_WIDTH 1000
+#define SCREEN_HEIGHT 750
 
 int main( int argc, char* args[] )
 {
@@ -17,7 +17,7 @@ int main( int argc, char* args[] )
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
 
-    Uint32 startTime = SDL_GetTicks(); //On récupère le temps de départ
+    Uint32 startTime = SDL_GetTicks(); //On rÃ©cupÃ¨re le temps de dÃ©part
 
 
     //The surface contained by the window
@@ -48,7 +48,8 @@ int main( int argc, char* args[] )
         createPlatform(&platform);
 
         Character* character = createCharacter(renderer);
-
+        Game* game = malloc(sizeof(Game));
+        initGame(game, platform, character);
 
         SDL_RenderPresent(renderer);
 
@@ -71,8 +72,14 @@ int main( int argc, char* args[] )
 
             while( quit == false )
             {
+
                 SDL_Event event;
                 controlCharacter(character,&event, &quit,&speed);
+
+
+                characterGravity(game);
+
+
                 renderBackground(renderer, background);
                 renderPlatform(renderer, platform);
                 renderCharacter(renderer, character);
@@ -82,7 +89,7 @@ int main( int argc, char* args[] )
 
 
                 Uint32 endFrame = SDL_GetTicks();
-                int32_t delay = (16 - (SDL_GetTicks() - frameTime)); //entier signé nécessaire
+                int32_t delay = (16 - (SDL_GetTicks() - frameTime)); //entier signÃ© nÃ©cessaire
 
                 if(delay<1)
                 {
