@@ -10,14 +10,13 @@ const float GRAVITY = 0.5f;
 typedef struct Game{
     Character* character;
     Platform* platform;
-    bool isJumping;
 }Game;
 
 void initGame(Game* game, Platform* platform,Character* character)
 {
     game->character = character;
     game->platform = platform;
-    game->isJumping = true;
+    game->character->isJumping = true;
 }
 
 void checkCollision(Platform* platform,Character* character, Game* game)
@@ -29,10 +28,9 @@ void checkCollision(Platform* platform,Character* character, Game* game)
         int diffRight = character->x - (platform->posX + platform->sizeX);
         if(diffLeft>0 && diffRight<0)
         {
-            printf("platform detected : %d, %d", platform->posX, platform->sizeX);
             character->y=platform->posY-character->sizeHeight;
             character->speedY=0;
-            game->isJumping=false;
+            game->character->isJumping=false;
         }
     }
 
@@ -40,11 +38,9 @@ void checkCollision(Platform* platform,Character* character, Game* game)
 
 void characterGravity(Game* game)
 {
-    if(game->isJumping==true)
-    {
-        game->character->speedY+=GRAVITY;
-        printf("%f",game->character->speedY);
-    }
+
+    game->character->speedY+=GRAVITY;
+
     Platform* current = game->platform;
     while(current!=NULL)
     {
