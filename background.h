@@ -1,5 +1,11 @@
 #include <SDL2/SDL.h>
 
-SDL_Surface* loadBMP(const char* filePath);
-void renderBackground(SDL_Surface* screenSurface);
+typedef struct Background
+{
+    SDL_Texture* texture;
+    SDL_Rect destinationRect;
+} Background;
+
+Background* createBackground(SDL_Renderer* renderer);
+void renderBackground(SDL_Renderer* renderer, Background* background);
 
