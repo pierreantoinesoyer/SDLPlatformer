@@ -11,6 +11,6 @@ typedef struct Plateform{
 void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY);
 void destroyPlateform(Plateform* plateform);
 void createPlateform(Plateform** plateform);
-Plateform* returnPlatform(Plateform* plateform,int index);
+Plateform* returnPlateform(Plateform* plateform,int index);
 
 #endif

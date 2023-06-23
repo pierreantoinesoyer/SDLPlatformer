@@ -88,7 +88,7 @@ int count(Plateform** plateform)
 }
 
 //return la une plateforme en fontion d'un index
-Plateform* returnPlatform(Plateform* plateform,int index) {
+Plateform* returnPlateform(Plateform* plateform,int index) {
     Plateform* current = plateform;
     int i = 0;
     while (current != NULL) {

@@ -45,10 +45,10 @@ int main(int argc, char* args[])
             createPlateform(&plateform);
             for (int i = 0; i < 5; i++)
             {
-                multi_rect[i].x = returnPlatform(plateform,i)->posX;
-                multi_rect[i].y = returnPlatform(plateform,i)->posY;
-                multi_rect[i].w = returnPlatform(plateform,i)->sizeX;
-                multi_rect[i].h = returnPlatform(plateform,i)->sizeY;
+                multi_rect[i].x = returnPlateform(plateform,i)->posX;
+                multi_rect[i].y = returnPlateform(plateform,i)->posY;
+                multi_rect[i].w = returnPlateform(plateform,i)->sizeX;
+                multi_rect[i].h = returnPlateform(plateform,i)->sizeY;
             }
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
             SDL_RenderFillRects(renderer, multi_rect, 5);
