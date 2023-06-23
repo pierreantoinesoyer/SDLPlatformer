@@ -65,14 +65,14 @@ int main( int argc, char* args[] )
             SDL_UpdateWindowSurface(window);
 
             //Hack to get window to stay up
-            SDL_Event e;
             bool quit = false;
             Uint32 frameTime = SDL_GetTicks();
+            int speed = 60;
 
             while( quit == false )
             {
-
-
+                SDL_Event event;
+                controlCharacter(character,&event, &quit,&speed);
                 renderBackground(renderer, background);
                 renderPlatform(renderer, platform);
                 renderCharacter(renderer, character);
@@ -92,11 +92,7 @@ int main( int argc, char* args[] )
                 SDL_Delay(delay);
                 frameTime = SDL_GetTicks();
 
-                while( SDL_PollEvent( &e ) )
-                {
-                    if( e.type == SDL_QUIT )
-                    quit = true;
-                }
+
             }
         }
     }
