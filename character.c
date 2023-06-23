@@ -35,7 +35,7 @@ Character *createCharacter(SDL_Renderer *rend){
     // sets initial y-position of object
     dest.y = ptrCharacter->y;
     ptrCharacter->rect = dest;
-
+    ptrCharacter->isJumping=false;
 
 
 
@@ -53,37 +53,60 @@ void renderCharacter(SDL_Renderer* renderer, Character* character)
     SDL_RenderCopy(renderer, character->texture, NULL, &character->rect);
 }
 
-void controlCharacter(Character *ptrCharacter,SDL_Event *ptrEvent, bool *quit,int *speed){
+void controlCharacter(Character* ptrCharacter, SDL_Event* ptrEvent, bool* quit, int* speed) {
     // Events management
-        while (SDL_PollEvent(ptrEvent)) {
-            switch (ptrEvent->type) {
-
+    while (SDL_PollEvent(ptrEvent)) {
+        switch (ptrEvent->type) {
             case SDL_QUIT:
                 // handling of close button
-                *quit = 0;
+                *quit = false;
                 break;
 
             case SDL_KEYDOWN:
-                // keyboard API for key pressed
                 switch (ptrEvent->key.keysym.scancode) {
-                case SDL_SCANCODE_W:
-                case SDL_SCANCODE_SPACE:
-                    ptrCharacter->rect.y -= *speed;
-                    break;
-                case SDL_SCANCODE_A:
-                case SDL_SCANCODE_LEFT:
-                    ptrCharacter->rect.x -= *speed / 30;
-                    break;
-                case SDL_SCANCODE_D:
-                case SDL_SCANCODE_RIGHT:
-                    ptrCharacter->rect.x += *speed / 30;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
+                    case SDL_SCANCODE_W:
+                    case SDL_SCANCODE_SPACE:
+                        if (!ptrCharacter->isJumping) {
+                            ptrCharacter->speedY = -*speed / 3;  // Set negative vertical speed for jumping
+                            ptrCharacter->isJumping = true;
+                        }
+                        break;
 
+                    case SDL_SCANCODE_A:
+                    case SDL_SCANCODE_LEFT:
+                        ptrCharacter->speedX = -*speed / 10;
+                        break;
+
+                    case SDL_SCANCODE_D:
+                    case SDL_SCANCODE_RIGHT:
+                        ptrCharacter->speedX = *speed / 10;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+
+            case SDL_KEYUP:
+                switch (ptrEvent->key.keysym.scancode) {
+                    case SDL_SCANCODE_W:
+                    case SDL_SCANCODE_SPACE:
+                        ptrCharacter->isJumping = false;
+                        break;
+
+                    case SDL_SCANCODE_A:
+                    case SDL_SCANCODE_LEFT:
+                    case SDL_SCANCODE_D:
+                    case SDL_SCANCODE_RIGHT:
+                        ptrCharacter->speedX = 0;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
 }
 
 

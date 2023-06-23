@@ -11,7 +11,7 @@ typedef struct Character{
     int sizeWidth ;
     float speedX;
     float speedY;
-
+    bool isJumping;
 
 }Character;
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1687521457 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
+1687523250 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\main.c
 	<stdio.h>
 	<SDL2/SDL.h>
 	<stdbool.h>
@@ -425,14 +425,14 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 
-1687523015 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.c
+1687523709 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
 	"character.h"
 
-1687521578 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.h
+1687523684 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\character.h
 	<SDL2/SDL.h>
 
 1687515946 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\platform.h
@@ -443,7 +443,7 @@
 	<stdbool.h>
 	<stdlib.h>
 
-1687521857 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\game.c
+1687523673 source:c:\users\pierreantoine\onedrive\documents\formation\c\platformer\game.c
 	<SDL2/SDL.h>
 	<stdio.h>
 	<stdbool.h>
@@ -451,6 +451,6 @@
 	"character.h"
 	"platform.h"
 
-1687521611 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\game.h
+1687523250 c:\users\pierreantoine\onedrive\documents\formation\c\platformer\game.h
 	<SDL2/SDL.h>
 
