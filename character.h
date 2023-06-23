@@ -11,5 +11,6 @@ typedef struct Character{
 
 Character *initCharacter(int x, int y);
 void printCharacter(Character *perso);
-void DisplayCharacter(Character *Character,SDL_Surface* screenSurface);
+//void freeCharactcer(Character *ptrCharacter)
+SDL_Surface* DisplayCharacter(Character *Character,SDL_Surface* screenSurface);
 

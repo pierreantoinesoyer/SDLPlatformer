@@ -17,8 +17,12 @@ void printCharacter(Character *perso){
 
 
 }
+/*
+void freeCharactcer(Character *ptrCharacter){
+    free(ptrCharacter);
+}*/
 
-void DisplayCharacter(Character *Character,SDL_Surface* screenSurface){
+SDL_Surface* DisplayCharacter(Character *Character,SDL_Surface* screenSurface){
     // Chargement image
     SDL_Surface* characterSurface = SDL_LoadBMP(Character->path);
 
@@ -26,6 +30,7 @@ void DisplayCharacter(Character *Character,SDL_Surface* screenSurface){
     SDL_BlitSurface(characterSurface, NULL, screenSurface, NULL);
 
     // libération de la surface écran
-    SDL_FreeSurface(characterSurface);
+    //SDL_FreeSurface(characterSurface);
+    return characterSurface;
 
 }
