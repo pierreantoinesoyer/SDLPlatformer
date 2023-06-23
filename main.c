@@ -1,9 +1,11 @@
 #include <stdio.h>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <stdbool.h>
 #include "background.h"
 #include "hud.h"
 #include "platform.h"
+#include "character.h"
+
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1000;
@@ -45,6 +47,9 @@ int main( int argc, char* args[] )
         Platform* platform = NULL;
         createPlatform(&platform);
 
+        Character* character = createCharacter(renderer);
+
+
         SDL_RenderPresent(renderer);
 
         if( window == NULL )
@@ -70,6 +75,7 @@ int main( int argc, char* args[] )
 
                 renderBackground(renderer, background);
                 renderPlatform(renderer, platform);
+                renderCharacter(renderer, character);
                 renderTimer(timer);
 
                 SDL_RenderPresent(renderer);
