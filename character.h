@@ -5,11 +5,17 @@ typedef struct Character{
     char* path;
     int x;
     int y;
+    SDL_Texture* texture;
+    SDL_Rect rect;
+    int sizeHeight ;
+    int sizeWidth ;
+
 
 }Character;
 
 
-Character *initCharacter(int x, int y);
+Character *createCharacter(SDL_Renderer * rend);
 void printCharacter(Character *perso);
+void renderCharacter(SDL_Renderer* renderer, Character* character);
 void DisplayCharacter(Character *Character,SDL_Surface* screenSurface);
 
