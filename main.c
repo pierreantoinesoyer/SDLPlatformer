@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "background.h"
 #include "hud.h"
+#include "platform.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1000;
@@ -41,6 +42,9 @@ int main( int argc, char* args[] )
 
         Background* background = createBackground(renderer);
 
+        Plateform* platform = NULL;
+        createPlateform(&platform);
+
         SDL_RenderPresent(renderer);
 
         if( window == NULL )
@@ -65,6 +69,7 @@ int main( int argc, char* args[] )
 
 
                 renderBackground(renderer, background);
+                renderPlatform(renderer, platform);
                 renderTimer(timer);
 
                 SDL_RenderPresent(renderer);
