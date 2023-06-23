@@ -40,9 +40,14 @@ int main(int argc, char* args[])
 
             // Clear window
             SDL_RenderClear( renderer );
+
+            // initialization tab of SDL_Rect
             SDL_Rect multi_rect[5];
+
+            // Create Plateform
             Plateform* plateform = NULL;
             createPlateform(&plateform);
+            // Add value for each rectangle
             for (int i = 0; i < 5; i++)
             {
                 multi_rect[i].x = returnPlateform(plateform,i)->posX;
@@ -50,6 +55,7 @@ int main(int argc, char* args[])
                 multi_rect[i].w = returnPlateform(plateform,i)->sizeX;
                 multi_rect[i].h = returnPlateform(plateform,i)->sizeY;
             }
+            // Fill green color to the rectangle
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
             SDL_RenderFillRects(renderer, multi_rect, 5);
 
@@ -57,6 +63,7 @@ int main(int argc, char* args[])
 
             //Destroy Plateform
             destroyPlateform(plateform);
+
             //Hack to get window to stay up
             SDL_Event e; bool quit = false; while (quit == false) { while (SDL_PollEvent(&e)) { if (e.type == SDL_QUIT) quit = true; } }
         }

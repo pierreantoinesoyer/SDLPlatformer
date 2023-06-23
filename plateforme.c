@@ -19,8 +19,10 @@ typedef struct Plateform{
 //inserer une plateforme
 void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY)
 {
+    // Allocation de memoire pour une nouvelle structure Plateform
     Plateform* newPlateform = (Plateform*)malloc(sizeof(Plateform));
 
+    // Creation de la nouvelle plateforme
     newPlateform->posX = posX;
     newPlateform->posY = posY;
     newPlateform->sizeX = sizeX;
@@ -38,13 +40,13 @@ void insert(Plateform** head, int posX, int posY, int sizeX, int sizeY)
             current->isDisplayed = false; // Met à jour le flag isDisplayed de l'élément précédent
             current = current->next;
         }
-        current->isDisplayed = false; // Met à jour le flag isDisplayed de l'élément précédent du dernier élément existant
-        current->next = newPlateform; // Ajoute le nouvel élément à la fin de la liste
+        current->isDisplayed = false; // Met à jour le flag isDisplayed de la plateforme précédente de la dernière plateforme existante
+        current->next = newPlateform; // Ajoute la nouvelle plateforme à la fin de la liste
     }
 }
 
 
-//detruire la plateform
+// Destruction de la plateform
 void destroyPlateform(Plateform* plateform)
 {
     if(plateform!= NULL)
@@ -53,9 +55,10 @@ void destroyPlateform(Plateform* plateform)
     }
 }
 
-//creation de 5 plateforme
+// Creation de 5 plateformes
 void createPlateform(Plateform** plateform)
 {
+    //initatilisation
     int posX;
     int posY;
     int sizeX;
@@ -87,7 +90,7 @@ int count(Plateform** plateform)
     }
 }
 
-//return la une plateforme en fontion d'un index
+// Return une plateforme en fontion d'un index
 Plateform* returnPlateform(Plateform* plateform,int index) {
     Plateform* current = plateform;
     int i = 0;
@@ -96,8 +99,8 @@ Plateform* returnPlateform(Plateform* plateform,int index) {
         {
             return current;
         }
-        i++;
-        current=current->next;
+        i++; //iteration de l'index
+        current=current->next; // Plateforme suivante
     }
     exit(0);
 }
